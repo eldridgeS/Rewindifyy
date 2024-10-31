@@ -18,8 +18,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
 
 urlpatterns = [
-    path("myappp/", include("myappp.urls")),
+    path('', lambda request: redirect('myappp/', permanent=True)),  # Redirect root to /myappp
+    path("myappp/", include("myappp.urls")),  # Loads urls for your app
     path("admin/", admin.site.urls),
 ]
