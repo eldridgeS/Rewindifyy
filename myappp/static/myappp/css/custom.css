@@ -1,0 +1,26 @@
+/* static/css/custom.css */
+
+/* Override Bootstrap classes */
+.bg-info {
+    background-color: #292929 !important; /* Custom blue */
+}
+
+.text-white {
+    color: #404040 !important; /* Slightly off-white */
+}
+
+.text-primary {
+    color: #3498db !important; /* Custom green */
+}
+
+.text-warning {
+    color: #ff33cf !important; /* Custom orange */
+}
+
+.text-light {
+    color: #FFFF00 !important; /* Custom light gray */
+}
+
+body {
+    background-color: #3d3d3d; /* Light gray background for the entire page */
+}
