@@ -24,3 +24,21 @@
 body {
     background-color: #3d3d3d; /* Light gray background for the entire page */
 }
+
+/* static/css/custom.css */
+@font-face {
+    font-family: 'Cybrpnuk';
+    src: url('../css/fonts/Cybrpnuk2.ttf') format('truetype'); /* Adjust the path based on your setup */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Cybrpnuk', cursive; /* Apply the Cybrpnuk font to the body or specific elements */
+}
+
+/* Apply the Cybrpnuk font to the specific <h1> element */
+.test-primary {
+    font-family: 'Cybrpnuk', cursive; /* Use the Cybrpnuk font */
+    color: #00ffcc; /* Optional: Change the color for a cyberpunk effect */
+}
