@@ -33,9 +33,17 @@ body {
     font-style: normal;
 }
 
+/* static/css/custom.css */
+
 body {
-    font-family: 'Cybrpnuk', cursive; /* Apply the Cybrpnuk font to the body or specific elements */
+    font-family: 'Cybrpnuk', cursive; /* Apply Cybrpnuk font */
+    background-image: url('../images/synthy.jpg'); /* Path to the image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    background-attachment: fixed; /* Keeps the image fixed in place during scroll */
+    color: #FFFF00; /* Optional: Color for body text */
 }
+
 
 /* Apply the Cybrpnuk font to the specific <h1> element */
 .test-primary {
