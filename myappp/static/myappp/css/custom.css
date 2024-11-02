@@ -56,3 +56,14 @@ body {
     color: #00ffcc; /* Optional: Change the color for a cyberpunk effect */
 }
 
+.btn-primary {
+    background-color: #FFFF00 !important; /* Set background color to yellow */
+    border-color: #FFFF00 !important;      /* Set border color to yellow */
+    color: #ff33cf !important;                /* Set text color to black for contrast */
+}
+
+.btn-secondary {
+    background-color: #FFFF00 !important; /* Set background color to yellow */
+    border-color: #FFFF00 !important;      /* Set border color to yellow */
+    color: #3498db !important;                /* Set text color to black for contrast */
+}

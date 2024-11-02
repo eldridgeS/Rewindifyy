@@ -1,15 +1,26 @@
 <!-- home.html -->
 {% extends "myappp/base.html" %}
+{% load static %}
 
 {% block title %}Home Page - My Django App{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="jumbotron bg-info text-white text-center"> <!-- Added 'text-center' class -->
+    <div class="jumbotron bg-info text-white text-center">
         <h1 class="display-4 text-primary">Rewindify</h1>
-        <p class="lead text-warning">This page uses Bootstrap's colors to style elements.</p>
+        <p class="lead text-warning">Hear the past, Listen for the future</p>
         <hr class="my-4">
-        <p class="text-light">Bootstrap makes styling easy! (Yes Diddy)</p>
+
+        <div class="d-flex align-items-center justify-content-center mb-3">
+            <img src="{% static 'myappp/images/spot_logo.png' %}" alt="Spotify Logo" class="me-2" style="height: 30px;">
+            <p class="text-light mb-0">A Spotify Rewind App</p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'login' %}" class="btn btn-primary me-2">Sign In</a>
+            <a href="{% url 'login' %}" class="btn btn-secondary ms-2">Sign Up</a>
+        </div>
     </div>
 </div>
 {% endblock %}
+
