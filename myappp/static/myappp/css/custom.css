@@ -62,8 +62,20 @@ body {
     color: #ff33cf !important;                /* Set text color to black for contrast */
 }
 
+.btn-primary:hover {
+    background-color: #ff33cf !important; /* Change to a darker shade or different color on hover */
+    border-color: #ff33cf !important;      /* Change border color on hover */
+    color: #FFFF00 !important;              /* Optional: Change text color on hover for contrast */
+}
+
 .btn-secondary {
     background-color: #FFFF00 !important; /* Set background color to yellow */
     border-color: #FFFF00 !important;      /* Set border color to yellow */
     color: #3498db !important;                /* Set text color to black for contrast */
+}
+
+.btn-secondary:hover {
+    background-color: #3498db !important; /* Change to a darker shade or different color on hover */
+    border-color: #3498db !important;      /* Change border color on hover */
+    color: #FFFF00 !important;              /* Optional: Change text color on hover for contrast */
 }
