@@ -8,3 +8,5 @@ def base(request):
     return render(request, 'myappp/base.html')
 def login(request):
     return render(request, 'myappp/login.html')
+def signup(request):
+    return render(request, 'myappp/signup.html')
