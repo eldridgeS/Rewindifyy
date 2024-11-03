@@ -1,15 +1,20 @@
 <!-- home.html -->
-{% extends "myappp/base.html" %}
-
-{% block title %}Home Page - My Django App{% endblock %}
+{% extends 'myappp/base.html' %}
+{% load static %}
+{% block title %}Home - Music Visualizer{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="jumbotron bg-info text-white text-center"> <!-- Added 'text-center' class -->
-        <h1 class="display-4 text-primary">Rewindify</h1>
-        <p class="lead text-warning">Login Page.</p>
-        <hr class="my-4">
-        <p class="text-light">Info</p>
-    </div>
-</div>
+<h1>Welcome to the Music Visualizer</h1>
+
+<!-- Audio Player -->
+<audio id="audioPlayer" controls>
+    <source src="{% static 'myappp/audio/Racing Into The Night (Vocal).mp3' %}" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+
+<!-- Music Visualizer -->
+<div id="visualizer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="{% static 'myappp/js/visualizer.js' %}"></script>
 {% endblock %}
