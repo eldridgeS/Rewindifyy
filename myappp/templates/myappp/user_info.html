@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Your Playlists</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Your Spotify Playlists</h1>
+        <ul class="list-group">
+            {% for playlist in playlists %}
+                <li class="list-group-item">
+                    <h5>{{ playlist.name }}</h5>
+                    <a href="https://open.spotify.com/playlist/{{ playlist.id }}" target="_blank">Open in Spotify</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

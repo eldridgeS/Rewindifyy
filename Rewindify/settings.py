@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@me7l1h&b!l8ci6bxvkk5mez%&6@=^y22_ykjt(c_fi$v%i%oj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myappp',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.spotify',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default authentication backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Required for allauth
+    'allauth.socialaccount.providers.spotify.provider.SpotifyOAuth2',  # Spotify backend
+)
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',  # if you're using cache
+    'django.middleware.cache.FetchFromCacheMiddleware',  # if you're using cache
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'Rewindify.urls'
@@ -113,6 +132,11 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+SPOTIFY_CLIENT_ID = 'e2f1ae44b7714b3a904b51b818360e71'
+SPOTIFY_CLIENT_SECRET = 'b2152296189648798ab82d40b3f1bfd2'
+SPOTIFY_REDIRECT_URI = 'http://localhost:8000/myappp/callback/'
+
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,0 +1,99 @@
+{% extends 'myappp/base.html' %}
+{% load static %}
+{% block title %}Home - Audio Visualizer{% endblock %}
+
+{% block content %}
+    <div class="visualizer-container" style="padding: 0; margin: 0;">
+        <canvas id="visualizer"></canvas>
+        <audio id="audio" controls>
+            <source src="{% static 'myappp/audio/Racing Into The Night (Vocal).mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const canvas = document.getElementById('visualizer');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas to fill the window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        analyser.fftSize = 2048;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        const numberOfBars = 8; // Fewer bars for a minimal display
+        const barWidth = canvas.width / (numberOfBars * 1.5); // Reduce the width for a tighter look
+
+        // Smoothing variables
+        const smoothingFactor = 0.995; // Adjust for more or less smoothing
+        const smoothedDataArray = new Float32Array(bufferLength);
+
+        function draw() {
+            requestAnimationFrame(draw);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            analyser.getByteFrequencyData(dataArray);
+
+            // Apply smoothing
+            for (let i = 0; i < bufferLength; i++) {
+                smoothedDataArray[i] = (smoothingFactor * smoothedDataArray[i]) + ((1 - smoothingFactor) * dataArray[i]);
+            }
+
+            const xOffset = 0; // Start drawing from the left edge
+
+            // Draw bars with the defined offset
+            for (let i = 0; i < numberOfBars; i++) {
+                const bandIndex = Math.floor((i * bufferLength) / numberOfBars);
+                const barHeight = smoothedDataArray[bandIndex] / 2;
+
+                // Dynamic color based on height
+                const red = (barHeight + 100) % 255;
+                const green = 50;
+                const blue = 255 - red;
+
+                ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+                ctx.fillRect(xOffset + (i * barWidth), canvas.height - barHeight, barWidth - 1, barHeight); // No offset, start from left
+            }
+        }
+
+        audio.onplay = () => {
+            audioContext.resume().then(() => {
+                draw();
+            });
+        };
+    </script>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+            height: 100%;
+            width: 100%;
+        }
+        .visualizer-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Set canvas behind other content */
+        }
+        audio {
+            position: relative;
+            z-index: 1; /* Keep audio controls above canvas */
+            margin: 20px; /* Add some margin */
+        }
+    </style>
+{% endblock %}
