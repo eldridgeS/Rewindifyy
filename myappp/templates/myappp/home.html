@@ -1,6 +1,6 @@
-<!-- home.html -->
 {% extends "myappp/base.html" %}
 {% load static %}
+
 {% block title %}Home - Rewindify{% endblock %}
 
 {% block content %}
@@ -10,13 +10,16 @@
         <p class="lead text-warning">Hear the past, Listen for the future</p>
         <hr class="my-4">
         <div class="d-flex align-items-center justify-content-center mb-3">
-            <img src="{% static 'myappp/images/spot_logo.png' %}" alt="Spotify Logo" class="me-2" style="height: 30px;">
+            <img src="{% static 'myappp/images/spot_logo.png' %}" alt="Spotify Logo" style="height: 30px; margin-right: 10px;">
             <p class="text-light mb-0">A Spotify Rewind App</p>
         </div>
-        <button id="open-signin-popup" class="btn btn-primary me-2">Sign In</button>
-        <button id="open-signup-popup" class="btn btn-secondary">Sign Up</button>
-        <!-- Add the Spotify Login Button here -->
-        <button id="spotify-login" class="btn btn-success mt-3" onclick="window.location.href='{% url 'login' %}'">Login with Spotify</button>
+
+        <!-- Align buttons in a single row with spacing -->
+        <div class="d-flex justify-content-center">
+            <button id="open-signin-popup" class="btn btn-primary mx-2">Sign In</button>
+            <button id="open-signup-popup" class="btn btn-secondary mx-2">Sign Up</button>
+            <button id="spotify-login" class="btn btn-success mx-2" onclick="window.location.href='{% url 'login' %}'">Login with Spotify</button>
+        </div>
     </div>
 </div>
 
