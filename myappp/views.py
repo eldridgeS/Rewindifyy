@@ -49,6 +49,7 @@ def view_playlists(request):
     if access_token:
         headers = {'Authorization': f'Bearer {access_token}'}
         playlists_response = requests.get('https://api.spotify.com/v1/me/playlists', headers=headers)
+        print(playlists_response.content)
 
         if playlists_response.status_code == 200:
             playlists = playlists_response.json()
